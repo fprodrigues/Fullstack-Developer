@@ -1,0 +1,86 @@
+<%= form_with model: [:admin, user], class: "space-y-4", data: { controller: "avatar-preview" } do |
+form| %>
+  <% if user.errors.any? %>
+    <div
+      class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+    >
+      <ul class="list-inside list-disc">
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label :full_name, class: "block text-sm font-medium" %>
+    <%= form.text_field(
+      :full_name,
+      class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2
+      text-sm"
+    ) %>
+  </div>
+  <div>
+    <%= form.label :email_address, class: "block text-sm font-medium" %>
+    <%= form.email_field(
+      :email_address,
+      class: "mt-1 w-full rounded-lg border border-slate-300 px-3
+      py-2 text-sm"
+    ) %>
+  </div>
+  <div>
+    <%= form.label :role, class: "block text-sm font-medium" %>
+    <%= form.select(
+      :role,
+      User.roles.keys.map { |role| [role.titleize, role] },
+      {},
+      class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+    ) %>
+  </div>
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <div>
+      <%= form.label :password, class: "block text-sm font-medium" %>
+      <%= form.password_field(
+        :password,
+        autocomplete: "new-password",
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+    <div>
+      <%= form.label(
+        :password_confirmation,
+        class: "block text-sm font-medium"
+      ) %>
+      <%= form.password_field(
+        :password_confirmation,
+        autocomplete: "new-password",
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+  </div>
+  <div>
+    <%= form.label :avatar_image, class: "block text-sm font-medium" %>
+    <div class="mt-1 flex items-center gap-3">
+      <img
+        data-avatar-preview-target="image"
+        class="hidden h-14 w-14 rounded-full object-cover ring-1 ring-slate-200"
+      >
+      <%= form.file_field(
+        :avatar_image,
+        accept: "image/png,image/jpeg,image/webp,image/gif",
+        data: {
+          avatar_preview_target: "input",
+          action: "change->avatar-preview#preview"
+        },
+        class: "text-sm"
+      ) %>
+    </div>
+  </div>
+  <div class="flex gap-3">
+    <%= form.submit class: "rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bgslate-800" %>
+    <%= link_to(
+      "Cancel",
+      admin_users_path,
+      class: "rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50"
+    ) %>
+  </div>
+<% end %>

@@ -1,0 +1,4983 @@
+{
+  "$schema": "https://raw.githubusercontent.com/simplecov-ruby/simplecov/main/schemas/coverage-v1.3.schema.json",
+  "meta": {
+    "schema_version": "1.3",
+    "simplecov_version": "1.2.0",
+    "command_name": "Minitest, Minitest (subprocess: 1)-0, Minitest (subprocess: 2)-1, Minitest (subprocess: 3)-2, Minitest (subprocess: 4)-3, Minitest (subprocess: 5)-4, Minitest (subprocess: 6)-5, Minitest (subprocess: 7)-6, Minitest (subprocess: 8)-7",
+    "command_names": [
+      "Minitest",
+      "Minitest (subprocess: 1)-0",
+      "Minitest (subprocess: 2)-1",
+      "Minitest (subprocess: 3)-2",
+      "Minitest (subprocess: 4)-3",
+      "Minitest (subprocess: 5)-4",
+      "Minitest (subprocess: 6)-5",
+      "Minitest (subprocess: 7)-6",
+      "Minitest (subprocess: 8)-7"
+    ],
+    "project_name": "Jerimun-user-managment",
+    "timestamp": "2026-09-14T07:33:35.777-03:00",
+    "root": "/home/fernando/projetos/Fullstack-Developer/jerimun-user-managment",
+    "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+    "primary_coverage": "line",
+    "line_coverage": true,
+    "branch_coverage": true,
+    "method_coverage": false
+  },
+  "total": {
+    "lines": {
+      "covered": 349,
+      "missed": 17,
+      "omitted": 321,
+      "total": 366,
+      "percent": 95.35519125683061,
+      "strength": 8.885245901639344
+    },
+    "branches": {
+      "covered": 57,
+      "missed": 24,
+      "total": 81,
+      "percent": 70.37037037037037,
+      "strength": 8.197530864197532
+    }
+  },
+  "coverage": {
+    "app/controllers/admin/base_controller.rb": {
+      "source": [
+        "module Admin",
+        "  class BaseController < ApplicationController",
+        "    before_action :require_admin!",
+        "  private",
+        "    def require_admin!",
+        "      return if Current.user&.admin?",
+        "      redirect_to profile_path, alert: \"You are not authorized to access that page.\"",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        32,
+        5,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 7,
+      "missed_lines": 0,
+      "omitted_lines": 3,
+      "total_lines": 7,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 6,
+          "end_line": 6,
+          "coverage": 32,
+          "inline": true,
+          "report_line": 6
+        },
+        {
+          "type": "else",
+          "start_line": 6,
+          "end_line": 6,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 6
+        },
+        {
+          "type": "then",
+          "start_line": 6,
+          "end_line": 6,
+          "coverage": 27,
+          "inline": true,
+          "report_line": 6
+        },
+        {
+          "type": "else",
+          "start_line": 6,
+          "end_line": 6,
+          "coverage": 5,
+          "inline": true,
+          "report_line": 6
+        }
+      ],
+      "branches_covered_percent": 75.0,
+      "covered_branches": 3,
+      "missed_branches": 1,
+      "total_branches": 4
+    },
+    "app/controllers/admin/dashboard_controller.rb": {
+      "source": [
+        "module Admin",
+        "  class DashboardController < BaseController",
+        "    def show",
+        "      @stats = User.dashboard_stats",
+        "      @recent_imports = UserImport.order(created_at: :desc).limit(5)",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 5,
+      "missed_lines": 0,
+      "omitted_lines": 3,
+      "total_lines": 5,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/controllers/admin/user_imports_controller.rb": {
+      "source": [
+        "module Admin",
+        "  class UserImportsController < BaseController",
+        "    def index",
+        "      @user_imports = UserImport.includes(:created_by).order(created_at: :desc)",
+        "    end",
+        "    def new",
+        "      @user_import = UserImport.new",
+        "    end",
+        "    def create",
+        "      @user_import = UserImport.new(user_import_params)",
+        "      @user_import.created_by = Current.user",
+        "      if @user_import.save",
+        "        UserImportJob.perform_later(@user_import.id)",
+        "        redirect_to admin_user_import_path(@user_import),",
+        "        notice: \"Import queued. Progress updates live below.\"",
+        "      else",
+        "        render :new, status: :unprocessable_entity",
+        "      end",
+        "    end",
+        "    def show",
+        "      @user_import = UserImport.find(params[:id])",
+        "    end",
+        "  private",
+        "    def user_import_params",
+        "      params.expect(user_import: [ :file ])",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        5,
+        5,
+        5,
+        2,
+        null,
+        5,
+        1,
+        null,
+        5,
+        3,
+        3,
+        3,
+        2,
+        2,
+        null,
+        null,
+        1,
+        null,
+        null,
+        5,
+        2,
+        null,
+        5,
+        5,
+        3,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 18,
+      "missed_lines": 0,
+      "omitted_lines": 10,
+      "total_lines": 18,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 13,
+          "end_line": 15,
+          "coverage": 2,
+          "inline": false,
+          "report_line": 12
+        },
+        {
+          "type": "else",
+          "start_line": 17,
+          "end_line": 17,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 16
+        }
+      ],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 2,
+      "missed_branches": 0,
+      "total_branches": 2
+    },
+    "app/controllers/admin/users_controller.rb": {
+      "source": [
+        "module Admin",
+        "  class UsersController < BaseController",
+        "    before_action :set_user, only: %i[show edit update destroy toggle_role]",
+        "    before_action :prevent_self_management, only: %i[destroy toggle_role]",
+        "    def index",
+        "      @users = User.order(created_at: :desc)",
+        "      @users = @users.where(role: params[:role]) if User.roles.key?(params[:role])",
+        "    end",
+        "    def show",
+        "    end",
+        "    def new",
+        "      @user = User.new",
+        "    end",
+        "    def create",
+        "      @user = User.new(user_params)",
+        "      if @user.save",
+        "        redirect_to admin_users_path, notice: \"User created.\"",
+        "      else",
+        "        render :new, status: :unprocessable_entity",
+        "      end",
+        "    end",
+        "    def edit",
+        "    end",
+        "    def update",
+        "      if @user.update(user_params)",
+        "        redirect_to admin_users_path, notice: \"User updated.\"",
+        "      else",
+        "        render :edit, status: :unprocessable_entity",
+        "      end",
+        "    end",
+        "    def destroy",
+        "      @user.destroy",
+        "      redirect_to admin_users_path, notice: \"User deleted.\", status: :see_other",
+        "    end",
+        "    def toggle_role",
+        "      @user.update!(role: @user.admin? ? :user : :admin)",
+        "      redirect_to admin_users_path, notice: \"Role updated to #{@user.role}.\"",
+        "    end",
+        "  private",
+        "    def set_user",
+        "      @user = User.find(params[:id])",
+        "    end",
+        "",
+        "    def prevent_self_management",
+        "      return unless @user == Current.user",
+        "      redirect_to admin_users_path, alert: \"You cannot change your own account here.\"",
+        "    end",
+        "",
+        "    def user_params",
+        "      permitted = params.expect(",
+        "      user: %i[full_name email_address password password_confirmation role avatar_image]",
+        "      )",
+        "      permitted = permitted.except(:password, :password_confirmation) if permitted[:password].blank?",
+        "      permitted",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        4,
+        4,
+        null,
+        7,
+        null,
+        7,
+        1,
+        null,
+        7,
+        3,
+        3,
+        2,
+        null,
+        1,
+        null,
+        null,
+        7,
+        null,
+        7,
+        1,
+        1,
+        null,
+        0,
+        null,
+        null,
+        7,
+        1,
+        1,
+        null,
+        7,
+        2,
+        2,
+        null,
+        7,
+        7,
+        6,
+        null,
+        null,
+        7,
+        5,
+        2,
+        null,
+        null,
+        7,
+        4,
+        null,
+        null,
+        4,
+        4,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 97.22222222222223,
+      "covered_lines": 35,
+      "missed_lines": 1,
+      "omitted_lines": 21,
+      "total_lines": 36,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 7,
+          "end_line": 7,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 7
+        },
+        {
+          "type": "else",
+          "start_line": 7,
+          "end_line": 7,
+          "coverage": 4,
+          "inline": true,
+          "report_line": 7
+        },
+        {
+          "type": "then",
+          "start_line": 17,
+          "end_line": 17,
+          "coverage": 2,
+          "inline": false,
+          "report_line": 16
+        },
+        {
+          "type": "else",
+          "start_line": 19,
+          "end_line": 19,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 18
+        },
+        {
+          "type": "then",
+          "start_line": 26,
+          "end_line": 26,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 25
+        },
+        {
+          "type": "else",
+          "start_line": 28,
+          "end_line": 28,
+          "coverage": 0,
+          "inline": false,
+          "report_line": 27
+        },
+        {
+          "type": "then",
+          "start_line": 36,
+          "end_line": 36,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 36
+        },
+        {
+          "type": "else",
+          "start_line": 36,
+          "end_line": 36,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 36
+        },
+        {
+          "type": "else",
+          "start_line": 45,
+          "end_line": 45,
+          "coverage": 2,
+          "inline": true,
+          "report_line": 45
+        },
+        {
+          "type": "then",
+          "start_line": 45,
+          "end_line": 45,
+          "coverage": 3,
+          "inline": true,
+          "report_line": 45
+        },
+        {
+          "type": "then",
+          "start_line": 53,
+          "end_line": 53,
+          "coverage": 2,
+          "inline": true,
+          "report_line": 53
+        },
+        {
+          "type": "else",
+          "start_line": 53,
+          "end_line": 53,
+          "coverage": 2,
+          "inline": true,
+          "report_line": 53
+        }
+      ],
+      "branches_covered_percent": 83.33333333333333,
+      "covered_branches": 10,
+      "missed_branches": 2,
+      "total_branches": 12
+    },
+    "app/controllers/application_controller.rb": {
+      "source": [
+        "class ApplicationController < ActionController::Base",
+        "  include Authentication",
+        "  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.",
+        "  allow_browser versions: :modern",
+        "  helper_method :current_user",
+        "",
+        "  # Changes to the importmap will invalidate the etag for HTML responses",
+        "  stale_when_importmap_changes",
+        "",
+        "  private",
+        "  def current_user",
+        "    Current.user",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        null,
+        8,
+        8,
+        null,
+        null,
+        8,
+        null,
+        8,
+        8,
+        55,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 8,
+      "missed_lines": 0,
+      "omitted_lines": 6,
+      "total_lines": 8,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/controllers/concerns/authentication.rb": {
+      "source": [
+        "module Authentication",
+        "  extend ActiveSupport::Concern",
+        "",
+        "  included do",
+        "    before_action :require_authentication",
+        "    helper_method :authenticated?",
+        "  end",
+        "",
+        "  class_methods do",
+        "    def allow_unauthenticated_access(**options)",
+        "      skip_before_action :require_authentication, **options",
+        "    end",
+        "  end",
+        "",
+        "  private",
+        "  def authenticated?",
+        "    resume_session",
+        "  end",
+        "",
+        "  def require_authentication",
+        "    resume_session || request_authentication",
+        "  end",
+        "",
+        "  def resume_session",
+        "    Current.session ||= find_session_by_cookie",
+        "  end",
+        "",
+        "  def find_session_by_cookie",
+        "    Session.find_by(id: cookies.signed[:session_id]) if cookies.signed[:session_id]",
+        "  end",
+        "",
+        "  def request_authentication",
+        "    session[:return_to_after_authenticating] = request.url",
+        "    redirect_to new_session_path",
+        "  end",
+        "",
+        "  def after_authentication_url",
+        "    session.delete(:return_to_after_authenticating) ||",
+        "    post_authentication_url_for(Current.user)",
+        "  end",
+        "",
+        "  def post_authentication_url_for(user)",
+        "    user&.admin? ? admin_root_url : profile_url",
+        "  end",
+        "",
+        "  def start_new_session_for(user)",
+        "    user.sessions.create!(user_agent: request.user_agent, ip_address: request.remote_ip).tap do |session|",
+        "      Current.session = session",
+        "      cookies.signed.permanent[:session_id] = { value: session.id, httponly: true, same_site: :lax }",
+        "    end",
+        "  end",
+        "",
+        "  def terminate_session",
+        "    Current.session.destroy",
+        "    cookies.delete(:session_id)",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        null,
+        8,
+        8,
+        8,
+        null,
+        null,
+        8,
+        8,
+        17,
+        null,
+        null,
+        null,
+        8,
+        8,
+        35,
+        null,
+        null,
+        8,
+        46,
+        null,
+        null,
+        8,
+        81,
+        null,
+        null,
+        8,
+        60,
+        null,
+        null,
+        8,
+        4,
+        4,
+        null,
+        null,
+        8,
+        30,
+        null,
+        null,
+        null,
+        8,
+        30,
+        null,
+        null,
+        8,
+        34,
+        34,
+        34,
+        null,
+        null,
+        null,
+        8,
+        3,
+        3,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 31,
+      "missed_lines": 0,
+      "omitted_lines": 26,
+      "total_lines": 31,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 29,
+          "end_line": 29,
+          "coverage": 42,
+          "inline": true,
+          "report_line": 29
+        },
+        {
+          "type": "else",
+          "start_line": 29,
+          "end_line": 29,
+          "coverage": 18,
+          "inline": true,
+          "report_line": 29
+        },
+        {
+          "type": "then",
+          "start_line": 43,
+          "end_line": 43,
+          "coverage": 30,
+          "inline": true,
+          "report_line": 43
+        },
+        {
+          "type": "else",
+          "start_line": 43,
+          "end_line": 43,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 43
+        },
+        {
+          "type": "then",
+          "start_line": 43,
+          "end_line": 43,
+          "coverage": 17,
+          "inline": true,
+          "report_line": 43
+        },
+        {
+          "type": "else",
+          "start_line": 43,
+          "end_line": 43,
+          "coverage": 13,
+          "inline": true,
+          "report_line": 43
+        }
+      ],
+      "branches_covered_percent": 83.33333333333333,
+      "covered_branches": 5,
+      "missed_branches": 1,
+      "total_branches": 6
+    },
+    "app/controllers/home_controller.rb": {
+      "source": [
+        "class HomeController < ApplicationController",
+        "  allow_unauthenticated_access only: :show",
+        "  def show",
+        "    redirect_to(Current.user.admin? ? admin_root_path : profile_path) if authenticated?",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        0,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 4,
+      "omitted_lines": 2,
+      "total_lines": 4,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 4,
+          "end_line": 4,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 4
+        },
+        {
+          "type": "else",
+          "start_line": 4,
+          "end_line": 4,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 4
+        },
+        {
+          "type": "then",
+          "start_line": 4,
+          "end_line": 4,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 4
+        },
+        {
+          "type": "else",
+          "start_line": 4,
+          "end_line": 4,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 4
+        }
+      ],
+      "branches_covered_percent": 0.0,
+      "covered_branches": 0,
+      "missed_branches": 4,
+      "total_branches": 4
+    },
+    "app/controllers/passwords_controller.rb": {
+      "source": [
+        "class PasswordsController < ApplicationController",
+        "  allow_unauthenticated_access",
+        "  before_action :set_user_by_token, only: %i[ edit update ]",
+        "  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_password_path, alert: \"Try again later.\" }",
+        "",
+        "  def new",
+        "  end",
+        "",
+        "  def create",
+        "    if user = User.find_by(email_address: params[:email_address])",
+        "      PasswordsMailer.reset(user).deliver_later",
+        "    end",
+        "",
+        "    redirect_to new_session_path, notice: \"Password reset instructions sent (if user with that email address exists).\"",
+        "  end",
+        "",
+        "  def edit",
+        "  end",
+        "",
+        "  def update",
+        "    if @user.update(params.permit(:password, :password_confirmation))",
+        "      @user.sessions.destroy_all",
+        "      redirect_to new_session_path, notice: \"Password has been reset.\"",
+        "    else",
+        "      redirect_to edit_password_path(params[:token]), alert: \"Passwords did not match.\"",
+        "    end",
+        "  end",
+        "",
+        "  private",
+        "    def set_user_by_token",
+        "      @user = User.find_by_password_reset_token!(params[:token])",
+        "    rescue ActiveSupport::MessageVerifier::InvalidSignature",
+        "      redirect_to new_password_path, alert: \"Password reset link is invalid or has expired.\"",
+        "    end",
+        "end"
+      ],
+      "lines": [
+        3,
+        3,
+        3,
+        3,
+        null,
+        3,
+        null,
+        null,
+        3,
+        2,
+        1,
+        null,
+        null,
+        2,
+        null,
+        null,
+        3,
+        null,
+        null,
+        3,
+        2,
+        1,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        3,
+        3,
+        5,
+        null,
+        1,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 19,
+      "missed_lines": 0,
+      "omitted_lines": 16,
+      "total_lines": 19,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 11,
+          "end_line": 11,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 10
+        },
+        {
+          "type": "else",
+          "start_line": 10,
+          "end_line": 12,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 10
+        },
+        {
+          "type": "then",
+          "start_line": 22,
+          "end_line": 23,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 21
+        },
+        {
+          "type": "else",
+          "start_line": 25,
+          "end_line": 25,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 24
+        }
+      ],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 4,
+      "missed_branches": 0,
+      "total_branches": 4
+    },
+    "app/controllers/profiles_controller.rb": {
+      "source": [
+        "class ProfilesController < ApplicationController",
+        "  def show",
+        "    @user = Current.user",
+        "  end",
+        "",
+        "  def edit",
+        "    @user = Current.user",
+        "  end",
+        "",
+        "  def update",
+        "    @user = Current.user",
+        "    if @user.update(profile_params)",
+        "      redirect_to profile_path, notice: \"Profile updated.\"",
+        "    else",
+        "      render :edit, status: :unprocessable_entity",
+        "    end",
+        "  end",
+        "",
+        "  def destroy",
+        "    user = Current.user",
+        "    terminate_session",
+        "    user.destroy",
+        "    redirect_to root_path, notice: \"Your account has been deleted.\"",
+        "  end",
+        "private",
+        "  def profile_params",
+        "    permitted = params.expect(",
+        "    user: %i[full_name email_address password password_confirmation avatar_image]",
+        "    )",
+        "",
+        "    permitted = permitted.except(:password, :password_confirmation) if permitted[:password].blank?",
+        "    permitted",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        6,
+        6,
+        3,
+        null,
+        null,
+        6,
+        0,
+        null,
+        null,
+        6,
+        4,
+        4,
+        3,
+        null,
+        1,
+        null,
+        null,
+        null,
+        6,
+        1,
+        1,
+        1,
+        1,
+        null,
+        6,
+        6,
+        4,
+        null,
+        null,
+        null,
+        4,
+        4,
+        null,
+        null
+      ],
+      "lines_covered_percent": 95.0,
+      "covered_lines": 19,
+      "missed_lines": 1,
+      "omitted_lines": 14,
+      "total_lines": 20,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 13,
+          "end_line": 13,
+          "coverage": 3,
+          "inline": false,
+          "report_line": 12
+        },
+        {
+          "type": "else",
+          "start_line": 15,
+          "end_line": 15,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 14
+        },
+        {
+          "type": "then",
+          "start_line": 31,
+          "end_line": 31,
+          "coverage": 4,
+          "inline": true,
+          "report_line": 31
+        },
+        {
+          "type": "else",
+          "start_line": 31,
+          "end_line": 31,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 31
+        }
+      ],
+      "branches_covered_percent": 75.0,
+      "covered_branches": 3,
+      "missed_branches": 1,
+      "total_branches": 4
+    },
+    "app/controllers/registrations_controller.rb": {
+      "source": [
+        "class RegistrationsController < ApplicationController",
+        "  allow_unauthenticated_access only: %i[new create]",
+        "  rate_limit to: 10, within: 3.minutes, only: :create,",
+        "  with: -> { redirect_to new_registration_url, alert: \"Try again later.\" }",
+        "",
+        "  def new",
+        "    @user = User.new",
+        "  end",
+        "",
+        "  def create",
+        "    @user = User.new(registration_params)",
+        "    @user.role = :user",
+        "    if @user.save",
+        "      start_new_session_for @user",
+        "      redirect_to profile_path, notice: \"Welcome! Your account is ready.\"",
+        "    else",
+        "      render :new, status: :unprocessable_entity",
+        "    end",
+        "  end",
+        "private",
+        "  def registration_params",
+        "    params.expect(",
+        "    user: %i[full_name email_address password password_confirmation avatar_image]",
+        "    )",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        6,
+        6,
+        6,
+        0,
+        null,
+        6,
+        2,
+        null,
+        null,
+        6,
+        5,
+        5,
+        5,
+        4,
+        4,
+        null,
+        1,
+        null,
+        null,
+        6,
+        6,
+        5,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 93.75,
+      "covered_lines": 15,
+      "missed_lines": 1,
+      "omitted_lines": 10,
+      "total_lines": 16,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 14,
+          "end_line": 15,
+          "coverage": 4,
+          "inline": false,
+          "report_line": 13
+        },
+        {
+          "type": "else",
+          "start_line": 17,
+          "end_line": 17,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 16
+        }
+      ],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 2,
+      "missed_branches": 0,
+      "total_branches": 2
+    },
+    "app/controllers/sessions_controller.rb": {
+      "source": [
+        "class SessionsController < ApplicationController",
+        "  allow_unauthenticated_access only: %i[ new create ]",
+        "  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_session_path, alert: \"Try again later.\" }",
+        "",
+        "  def new",
+        "  end",
+        "",
+        "  def create",
+        "    if user = User.authenticate_by(params.permit(:email_address, :password))",
+        "      start_new_session_for user",
+        "      redirect_to after_authentication_url",
+        "    else",
+        "      redirect_to new_session_path, alert: \"Try another email address or password.\"",
+        "    end",
+        "  end",
+        "",
+        "  def destroy",
+        "    terminate_session",
+        "    redirect_to new_session_path, status: :see_other",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        8,
+        null,
+        8,
+        null,
+        null,
+        8,
+        32,
+        30,
+        30,
+        null,
+        2,
+        null,
+        null,
+        null,
+        8,
+        2,
+        2,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 12,
+      "missed_lines": 0,
+      "omitted_lines": 9,
+      "total_lines": 12,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 10,
+          "end_line": 11,
+          "coverage": 30,
+          "inline": false,
+          "report_line": 9
+        },
+        {
+          "type": "else",
+          "start_line": 13,
+          "end_line": 13,
+          "coverage": 2,
+          "inline": false,
+          "report_line": 12
+        }
+      ],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 2,
+      "missed_branches": 0,
+      "total_branches": 2
+    },
+    "app/helpers/application_helper.rb": {
+      "source": [
+        "module ApplicationHelper",
+        "end"
+      ],
+      "lines": [
+        8,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 1,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/jobs/application_job.rb": {
+      "source": [
+        "class ApplicationJob < ActiveJob::Base",
+        "  # Automatically retry jobs that encountered a deadlock",
+        "  # retry_on ActiveRecord::Deadlocked",
+        "",
+        "  # Most jobs are safe to ignore if the underlying records are no longer available",
+        "  # discard_on ActiveJob::DeserializationError",
+        "end"
+      ],
+      "lines": [
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
+      "omitted_lines": 6,
+      "total_lines": 1,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/jobs/user_import_job.rb": {
+      "source": [
+        "class UserImportJob < ApplicationJob",
+        "  queue_as :default",
+        "  discard_on ActiveJob::DeserializationError",
+        "  discard_on ActiveRecord::RecordNotFound",
+        "",
+        "  def perform(user_import_id)",
+        "    user_import = UserImport.find(user_import_id)",
+        "    UserImports::Processor.call(user_import)",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        4,
+        4,
+        4,
+        4,
+        null,
+        4,
+        2,
+        1,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 7,
+      "missed_lines": 0,
+      "omitted_lines": 3,
+      "total_lines": 7,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/mailers/application_mailer.rb": {
+      "source": [
+        "class ApplicationMailer < ActionMailer::Base",
+        "  default from: \"from@example.com\"",
+        "  layout \"mailer\"",
+        "end"
+      ],
+      "lines": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 3,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 3,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/mailers/passwords_mailer.rb": {
+      "source": [
+        "class PasswordsMailer < ApplicationMailer",
+        "  def reset(user)",
+        "    @user = user",
+        "    mail subject: \"Reset your password\", to: user.email_address",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        1,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
+      "lines_covered_percent": 50.0,
+      "covered_lines": 2,
+      "missed_lines": 2,
+      "omitted_lines": 2,
+      "total_lines": 4,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/models/application_record.rb": {
+      "source": [
+        "class ApplicationRecord < ActiveRecord::Base",
+        "  primary_abstract_class",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 2,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 2,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/models/current.rb": {
+      "source": [
+        "class Current < ActiveSupport::CurrentAttributes",
+        "  attribute :session",
+        "  delegate :user, to: :session, allow_nil: true",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        8,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 3,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 3,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/models/session.rb": {
+      "source": [
+        "class Session < ApplicationRecord",
+        "  belongs_to :user",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 2,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 2,
+      "branches": [],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 0,
+      "missed_branches": 0,
+      "total_branches": 0
+    },
+    "app/models/user.rb": {
+      "source": [
+        "class User < ApplicationRecord",
+        "  ROLES = %w[user admin].freeze",
+        "  AVATAR_CONTENT_TYPES = %w[image/png image/jpeg image/webp image/gif].freeze",
+        "  AVATAR_MAX_SIZE = 5.megabytes",
+        "  has_secure_password",
+        "  has_many :sessions, dependent: :destroy",
+        "  has_many :user_imports, foreign_key: :created_by_id,",
+        "  inverse_of: :created_by, dependent: :destroy",
+        "  has_one_attached :avatar_image",
+        "  enum :role, { user: \"user\", admin: \"admin\" },",
+        "  default: :user, validate: true, scopes: false",
+        "  normalizes :email_address, with: ->(email) { email.to_s.strip.downcase }",
+        "  validates :full_name, presence: true, length: { maximum: 120 }",
+        "  validates :email_address,",
+        "  presence: true,",
+        "  uniqueness: { case_sensitive: false },",
+        "  format: { with: URI::MailTo::EMAIL_REGEXP }",
+        "  validates :password, length: { minimum: 8 }, allow_nil: true",
+        "  validate :acceptable_avatar_image",
+        "  after_commit :broadcast_dashboard_stats, on: %i[create destroy]",
+        "  after_commit :broadcast_dashboard_stats, on: :update, if: :saved_change_to_role?",
+        "  scope :admins, -> { where(role: \"admin\") }",
+        "  scope :regular, -> { where(role: \"user\") }",
+        "  class << self",
+        "    def dashboard_stats",
+        "      counts = group(:role).count",
+        "      {",
+        "      total: counts.values.sum,",
+        "      admins: counts[\"admin\"].to_i,",
+        "      users: counts[\"user\"].to_i",
+        "      }",
+        "    end",
+        "",
+        "    def broadcast_dashboard_stats",
+        "      Turbo::StreamsChannel.broadcast_replace_to(",
+        "      \"admin_dashboard\",",
+        "      target: \"dashboard_stats\",",
+        "      partial: \"admin/dashboard/stats\",",
+        "      locals: { stats: dashboard_stats }",
+        "      )",
+        "    end",
+        "",
+        "    def suppressing_dashboard_broadcasts",
+        "      previous = Thread.current[:suppress_dashboard_broadcasts]",
+        "      Thread.current[:suppress_dashboard_broadcasts] = true",
+        "      yield",
+        "    ensure",
+        "      Thread.current[:suppress_dashboard_broadcasts] = previous",
+        "    end",
+        "",
+        "    def dashboard_broadcasts_suppressed?",
+        "      Thread.current[:suppress_dashboard_broadcasts].present?",
+        "    end",
+        "  end",
+        "",
+        "  def initials",
+        "    full_name.to_s.split.first(2).map { |part| part[0] }.join.upcase",
+        "  end",
+        "",
+        "  private",
+        "",
+        "  def broadcast_dashboard_stats",
+        "    return if self.class.dashboard_broadcasts_suppressed?",
+        "    self.class.broadcast_dashboard_stats",
+        "  end",
+        "",
+        "  def acceptable_avatar_image",
+        "    return unless avatar_image.attached?",
+        "    unless AVATAR_CONTENT_TYPES.include?(avatar_image.content_type)",
+        "      errors.add(:avatar_image, \"must be a PNG, JPEG, WEBP or GIF\")",
+        "    end",
+        "    if avatar_image.byte_size > AVATAR_MAX_SIZE",
+        "      errors.add(:avatar_image, \"must be smaller than 5MB\")",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        null,
+        8,
+        8,
+        null,
+        123,
+        8,
+        8,
+        null,
+        null,
+        null,
+        8,
+        8,
+        8,
+        8,
+        10,
+        10,
+        8,
+        8,
+        15,
+        null,
+        15,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8,
+        9,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8,
+        6,
+        6,
+        6,
+        null,
+        6,
+        null,
+        null,
+        8,
+        2,
+        null,
+        null,
+        null,
+        8,
+        48,
+        null,
+        null,
+        8,
+        null,
+        8,
+        2,
+        2,
+        null,
+        null,
+        8,
+        42,
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 97.67441860465117,
+      "covered_lines": 42,
+      "missed_lines": 1,
+      "omitted_lines": 33,
+      "total_lines": 43,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 63,
+          "end_line": 63,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 63
+        },
+        {
+          "type": "else",
+          "start_line": 63,
+          "end_line": 63,
+          "coverage": 2,
+          "inline": true,
+          "report_line": 63
+        },
+        {
+          "type": "else",
+          "start_line": 68,
+          "end_line": 68,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 68
+        },
+        {
+          "type": "then",
+          "start_line": 68,
+          "end_line": 68,
+          "coverage": 41,
+          "inline": true,
+          "report_line": 68
+        },
+        {
+          "type": "else",
+          "start_line": 69,
+          "end_line": 71,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 69
+        },
+        {
+          "type": "then",
+          "start_line": 70,
+          "end_line": 70,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 69
+        },
+        {
+          "type": "then",
+          "start_line": 73,
+          "end_line": 73,
+          "coverage": 0,
+          "inline": false,
+          "report_line": 72
+        },
+        {
+          "type": "else",
+          "start_line": 72,
+          "end_line": 74,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 72
+        }
+      ],
+      "branches_covered_percent": 62.5,
+      "covered_branches": 5,
+      "missed_branches": 3,
+      "total_branches": 8
+    },
+    "app/models/user_import.rb": {
+      "source": [
+        "class UserImport < ApplicationRecord",
+        "  ALLOWED_EXTENSIONS = %w[.csv .xlsx].freeze",
+        "",
+        "  belongs_to :created_by, class_name: \"User\"",
+        "",
+        "  has_one_attached :file",
+        "",
+        "  enum :status,",
+        "       {",
+        "         pending: \"pending\",",
+        "         processing: \"processing\",",
+        "         completed: \"completed\",",
+        "         failed: \"failed\"",
+        "       },",
+        "       default: :pending,",
+        "       validate: true,",
+        "       scopes: false",
+        "",
+        "  validate :acceptable_file",
+        "",
+        "  after_update_commit :broadcast_progress, if: :progress_changed?",
+        "",
+        "  def extension",
+        "    File.extname(file.filename.to_s).downcase",
+        "  end",
+        "",
+        "  def filename",
+        "    file.attached? ? file.filename.to_s : \"(no file)\"",
+        "  end",
+        "",
+        "  def progress_percent",
+        "    return 0 if total_rows.to_i.zero?",
+        "",
+        "    ((processed_rows.to_f / total_rows) * 100)",
+        "      .round",
+        "      .clamp(0, 100)",
+        "  end",
+        "",
+        "  def finished?",
+        "    completed? || failed?",
+        "  end",
+        "",
+        "  private",
+        "",
+        "  def acceptable_file",
+        "    return errors.add(:file, \"must be attached\") unless file.attached?",
+        "",
+        "    unless ALLOWED_EXTENSIONS.include?(extension)",
+        "      errors.add(:file, \"must be a .csv or .xlsx file\")",
+        "    end",
+        "  end",
+        "",
+        "  def progress_changed?",
+        "    saved_change_to_total_rows? ||",
+        "      saved_change_to_processed_rows? ||",
+        "      saved_change_to_successful_rows? ||",
+        "      saved_change_to_failed_rows? ||",
+        "      saved_change_to_status? ||",
+        "      saved_change_to_error_message?",
+        "  end",
+        "",
+        "  def broadcast_progress",
+        "    broadcast_replace_to(",
+        "      self,",
+        "      target: \"user_import_progress\",",
+        "      partial: \"admin/user_imports/progress\",",
+        "      locals: { user_import: self }",
+        "    )",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        8,
+        8,
+        null,
+        8,
+        null,
+        8,
+        null,
+        8,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8,
+        null,
+        8,
+        null,
+        8,
+        65,
+        null,
+        null,
+        8,
+        50,
+        null,
+        null,
+        8,
+        73,
+        null,
+        50,
+        null,
+        null,
+        null,
+        null,
+        8,
+        2,
+        null,
+        null,
+        8,
+        null,
+        8,
+        59,
+        null,
+        58,
+        2,
+        null,
+        null,
+        null,
+        8,
+        56,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        8,
+        33,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 25,
+      "missed_lines": 0,
+      "omitted_lines": 45,
+      "total_lines": 25,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 28,
+          "end_line": 28,
+          "coverage": 36,
+          "inline": true,
+          "report_line": 28
+        },
+        {
+          "type": "else",
+          "start_line": 28,
+          "end_line": 28,
+          "coverage": 14,
+          "inline": true,
+          "report_line": 28
+        },
+        {
+          "type": "then",
+          "start_line": 32,
+          "end_line": 32,
+          "coverage": 23,
+          "inline": true,
+          "report_line": 32
+        },
+        {
+          "type": "else",
+          "start_line": 32,
+          "end_line": 32,
+          "coverage": 50,
+          "inline": true,
+          "report_line": 32
+        },
+        {
+          "type": "else",
+          "start_line": 46,
+          "end_line": 46,
+          "coverage": 58,
+          "inline": true,
+          "report_line": 46
+        },
+        {
+          "type": "then",
+          "start_line": 46,
+          "end_line": 46,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 46
+        },
+        {
+          "type": "else",
+          "start_line": 48,
+          "end_line": 50,
+          "coverage": 56,
+          "inline": true,
+          "report_line": 48
+        },
+        {
+          "type": "then",
+          "start_line": 49,
+          "end_line": 49,
+          "coverage": 2,
+          "inline": false,
+          "report_line": 48
+        }
+      ],
+      "branches_covered_percent": 100.0,
+      "covered_branches": 8,
+      "missed_branches": 0,
+      "total_branches": 8
+    },
+    "app/services/user_imports/csv_reader.rb": {
+      "source": [
+        "require \"csv\"",
+        "module UserImports",
+        "  class CsvReader",
+        "    def initialize(blob)",
+        "      @blob = blob",
+        "    end",
+        "    def rows",
+        "      CSV.parse(content, headers: true).filter_map do |row|",
+        "        hash = row.to_h",
+        "        next if hash.values.all?(&:blank?)",
+        "        hash.transform_keys { |key| normalize_key(key) }",
+        "      end",
+        "    end",
+        "  private",
+        "    attr_reader :blob",
+        "    def content",
+        "      blob.download",
+        "      .encode(\"UTF-8\", invalid: :replace, undef: :replace, replace: \"\")",
+        "      .delete_prefix(\"\\uFEFF\") # BOM do Excel",
+        "    end",
+        "    def normalize_key(key)",
+        "      key.to_s.strip.downcase.gsub(/\\s+/, \"_\").to_sym",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        5,
+        5,
+        5,
+        5,
+        4,
+        null,
+        5,
+        4,
+        12,
+        12,
+        60,
+        null,
+        null,
+        5,
+        5,
+        5,
+        4,
+        null,
+        null,
+        null,
+        5,
+        48,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 16,
+      "missed_lines": 0,
+      "omitted_lines": 9,
+      "total_lines": 16,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 10,
+          "end_line": 10,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 10
+        },
+        {
+          "type": "else",
+          "start_line": 10,
+          "end_line": 10,
+          "coverage": 12,
+          "inline": true,
+          "report_line": 10
+        }
+      ],
+      "branches_covered_percent": 50.0,
+      "covered_branches": 1,
+      "missed_branches": 1,
+      "total_branches": 2
+    },
+    "app/services/user_imports/processor.rb": {
+      "source": [
+        "module UserImports",
+        "  class Processor",
+        "    class UnsupportedFormat < StandardError; end",
+        "",
+        "    BROADCAST_EVERY = 25",
+        "    BROADCAST_EACH_ROW_UNTIL = 25",
+        "",
+        "    READERS = {",
+        "      \".csv\" => CsvReader,",
+        "      \".xlsx\" => XlsxReader",
+        "    }.freeze",
+        "",
+        "    def self.call(user_import)",
+        "      new(user_import).call",
+        "    end",
+        "",
+        "    def initialize(user_import)",
+        "      @user_import = user_import",
+        "      @successful = 0",
+        "      @failed = 0",
+        "      @processed = 0",
+        "      @total_rows = 0",
+        "    end",
+        "",
+        "    def call",
+        "      start!",
+        "",
+        "      rows = reader.rows",
+        "      @total_rows = rows.size",
+        "",
+        "      user_import.update!(total_rows: @total_rows)",
+        "",
+        "      User.suppressing_dashboard_broadcasts do",
+        "        rows.each_with_index do |row, index|",
+        "          import_row(row)",
+        "",
+        "          persist_progress if persist_progress?(index)",
+        "",
+        "        end",
+        "      end",
+        "",
+        "      finish!",
+        "    rescue StandardError => e",
+        "      fail!(e)",
+        "    ensure",
+        "      User.broadcast_dashboard_stats",
+        "    end",
+        "",
+        "    private",
+        "",
+        "    attr_reader :user_import",
+        "",
+        "    def start!",
+        "      user_import.update!(",
+        "        status: :processing,",
+        "        total_rows: 0,",
+        "        processed_rows: 0,",
+        "        successful_rows: 0,",
+        "        failed_rows: 0,",
+        "        error_message: nil",
+        "      )",
+        "    end",
+        "",
+        "    def import_row(row)",
+        "      user = User.new(",
+        "        full_name: row[:full_name].presence || row[:name],",
+        "        email_address: row[:email_address].presence || row[:email],",
+        "        password: row[:password].presence || SecureRandom.base58(24),",
+        "        role: role_for(row[:role])",
+        "      )",
+        "",
+        "      if user.save",
+        "        @successful += 1",
+        "      else",
+        "        @failed += 1",
+        "      end",
+        "    rescue StandardError => e",
+        "      Rails.logger.warn(",
+        "        \"UserImport ##{user_import.id}: row failed: \" \\",
+        "        \"#{e.class}: #{e.message}\"",
+        "      )",
+        "",
+        "      @failed += 1",
+        "    ensure",
+        "      @processed += 1",
+        "    end",
+        "",
+        "    def role_for(value)",
+        "      normalized = value.to_s.strip.downcase",
+        "",
+        "      User.roles.key?(normalized) ? normalized : \"user\"",
+        "    end",
+        "",
+        "    def persist_progress?(index)",
+        "      current_row = index + 1",
+        "",
+        "      return true if @total_rows <= BROADCAST_EACH_ROW_UNTIL",
+        "      return true if (current_row % BROADCAST_EVERY).zero?",
+        "      return true if current_row == @total_rows",
+        "",
+        "      false",
+        "    end",
+        "",
+        "    def persist_progress(status: nil)",
+        "      attributes = {",
+        "        processed_rows: @processed,",
+        "        successful_rows: @successful,",
+        "        failed_rows: @failed",
+        "      }",
+        "",
+        "      attributes[:status] = status if status",
+        "",
+        "      user_import.update!(attributes)",
+        "    end",
+        "",
+        "    def finish!",
+        "      persist_progress(status: :completed)",
+        "    end",
+        "",
+        "    def fail!(error)",
+        "      Rails.logger.error(",
+        "        \"UserImport ##{user_import.id} failed: \" \\",
+        "        \"#{error.class}: #{error.message}\"",
+        "      )",
+        "",
+        "      user_import.update!(",
+        "        status: :failed,",
+        "        processed_rows: @processed,",
+        "        successful_rows: @successful,",
+        "        failed_rows: @failed,",
+        "        error_message: error.message.to_s.truncate(500)",
+        "      )",
+        "    end",
+        "",
+        "    def reader",
+        "      klass = READERS[user_import.extension]",
+        "",
+        "      unless klass",
+        "        raise UnsupportedFormat,",
+        "              \"Unsupported file type: #{user_import.extension}\"",
+        "      end",
+        "",
+        "      klass.new(user_import.file.blob)",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        5,
+        5,
+        5,
+        null,
+        5,
+        5,
+        null,
+        null,
+        5,
+        null,
+        null,
+        null,
+        5,
+        7,
+        null,
+        null,
+        5,
+        7,
+        7,
+        7,
+        7,
+        7,
+        null,
+        null,
+        5,
+        7,
+        null,
+        7,
+        6,
+        null,
+        6,
+        null,
+        6,
+        6,
+        16,
+        null,
+        16,
+        null,
+        null,
+        null,
+        null,
+        6,
+        null,
+        1,
+        null,
+        7,
+        null,
+        null,
+        5,
+        null,
+        5,
+        null,
+        5,
+        7,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        5,
+        16,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        16,
+        11,
+        null,
+        5,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        16,
+        null,
+        null,
+        5,
+        16,
+        null,
+        16,
+        null,
+        null,
+        5,
+        16,
+        null,
+        16,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        5,
+        null,
+        22,
+        null,
+        null,
+        null,
+        null,
+        22,
+        null,
+        22,
+        null,
+        null,
+        5,
+        6,
+        null,
+        null,
+        5,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        5,
+        7,
+        null,
+        7,
+        0,
+        null,
+        null,
+        null,
+        7,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 90.1639344262295,
+      "covered_lines": 55,
+      "missed_lines": 6,
+      "omitted_lines": 85,
+      "total_lines": 61,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 37,
+          "end_line": 37,
+          "coverage": 16,
+          "inline": true,
+          "report_line": 37
+        },
+        {
+          "type": "else",
+          "start_line": 37,
+          "end_line": 37,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 37
+        },
+        {
+          "type": "then",
+          "start_line": 73,
+          "end_line": 73,
+          "coverage": 11,
+          "inline": false,
+          "report_line": 72
+        },
+        {
+          "type": "else",
+          "start_line": 75,
+          "end_line": 75,
+          "coverage": 5,
+          "inline": false,
+          "report_line": 74
+        },
+        {
+          "type": "then",
+          "start_line": 91,
+          "end_line": 91,
+          "coverage": 15,
+          "inline": true,
+          "report_line": 91
+        },
+        {
+          "type": "else",
+          "start_line": 91,
+          "end_line": 91,
+          "coverage": 1,
+          "inline": true,
+          "report_line": 91
+        },
+        {
+          "type": "then",
+          "start_line": 97,
+          "end_line": 97,
+          "coverage": 16,
+          "inline": true,
+          "report_line": 97
+        },
+        {
+          "type": "else",
+          "start_line": 97,
+          "end_line": 97,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 97
+        },
+        {
+          "type": "then",
+          "start_line": 98,
+          "end_line": 98,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 98
+        },
+        {
+          "type": "else",
+          "start_line": 98,
+          "end_line": 98,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 98
+        },
+        {
+          "type": "then",
+          "start_line": 99,
+          "end_line": 99,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 99
+        },
+        {
+          "type": "else",
+          "start_line": 99,
+          "end_line": 99,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 99
+        },
+        {
+          "type": "then",
+          "start_line": 111,
+          "end_line": 111,
+          "coverage": 6,
+          "inline": true,
+          "report_line": 111
+        },
+        {
+          "type": "else",
+          "start_line": 111,
+          "end_line": 111,
+          "coverage": 16,
+          "inline": true,
+          "report_line": 111
+        },
+        {
+          "type": "else",
+          "start_line": 138,
+          "end_line": 141,
+          "coverage": 7,
+          "inline": true,
+          "report_line": 138
+        },
+        {
+          "type": "then",
+          "start_line": 139,
+          "end_line": 140,
+          "coverage": 0,
+          "inline": false,
+          "report_line": 138
+        }
+      ],
+      "branches_covered_percent": 56.25,
+      "covered_branches": 9,
+      "missed_branches": 7,
+      "total_branches": 16
+    },
+    "app/services/user_imports/xlsx_reader.rb": {
+      "source": [
+        "require \"roo\"",
+        "module UserImports",
+        "  class XlsxReader",
+        "    def initialize(blob)",
+        "      @blob = blob",
+        "    end",
+        "",
+        "    def rows",
+        "      blob.open do |file|",
+        "        sheet = Roo::Excelx.new(file.path)",
+        "        headers = sheet.row(1).map { |header| normalize_key(header) }",
+        "        (2..sheet.last_row).filter_map do |index|",
+        "          values = sheet.row(index)",
+        "          next if values.all?(&:blank?)",
+        "          headers.zip(values.map { |value| stringify(value) }).to_h",
+        "        end",
+        "      end",
+        "    end",
+        "",
+        "  private",
+        "    attr_reader :blob",
+        "",
+        "    def normalize_key(key)",
+        "      key.to_s.strip.downcase.gsub(/\\s+/, \"_\").to_sym",
+        "    end",
+        "",
+        "    def stringify(value)",
+        "      case value",
+        "      when Float then value == value.to_i ? value.to_i.to_s : value.to_s",
+        "      when nil then nil",
+        "      else value.to_s.strip",
+        "      end",
+        "    end",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        5,
+        5,
+        5,
+        5,
+        3,
+        null,
+        null,
+        5,
+        3,
+        3,
+        8,
+        2,
+        4,
+        4,
+        18,
+        null,
+        null,
+        null,
+        null,
+        5,
+        5,
+        null,
+        5,
+        6,
+        null,
+        null,
+        5,
+        14,
+        0,
+        1,
+        13,
+        null,
+        null,
+        null,
+        null
+      ],
+      "lines_covered_percent": 95.45454545454545,
+      "covered_lines": 21,
+      "missed_lines": 1,
+      "omitted_lines": 13,
+      "total_lines": 22,
+      "branches": [
+        {
+          "type": "then",
+          "start_line": 14,
+          "end_line": 14,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 14
+        },
+        {
+          "type": "else",
+          "start_line": 14,
+          "end_line": 14,
+          "coverage": 4,
+          "inline": true,
+          "report_line": 14
+        },
+        {
+          "type": "when",
+          "start_line": 29,
+          "end_line": 29,
+          "coverage": 0,
+          "inline": false,
+          "report_line": 28
+        },
+        {
+          "type": "when",
+          "start_line": 30,
+          "end_line": 30,
+          "coverage": 1,
+          "inline": false,
+          "report_line": 29
+        },
+        {
+          "type": "else",
+          "start_line": 31,
+          "end_line": 31,
+          "coverage": 13,
+          "inline": false,
+          "report_line": 30
+        },
+        {
+          "type": "then",
+          "start_line": 29,
+          "end_line": 29,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 29
+        },
+        {
+          "type": "else",
+          "start_line": 29,
+          "end_line": 29,
+          "coverage": 0,
+          "inline": true,
+          "report_line": 29
+        }
+      ],
+      "branches_covered_percent": 42.857142857142854,
+      "covered_branches": 3,
+      "missed_branches": 4,
+      "total_branches": 7
+    }
+  },
+  "groups": {
+    "Controllers": {
+      "lines": {
+        "covered": 169,
+        "missed": 7,
+        "omitted": 120,
+        "total": 176,
+        "percent": 96.02272727272727,
+        "strength": 7.5397727272727275
+      },
+      "branches": {
+        "covered": 31,
+        "missed": 9,
+        "total": 40,
+        "percent": 77.5,
+        "strength": 6.375
+      },
+      "files": [
+        "app/controllers/admin/base_controller.rb",
+        "app/controllers/admin/dashboard_controller.rb",
+        "app/controllers/admin/user_imports_controller.rb",
+        "app/controllers/admin/users_controller.rb",
+        "app/controllers/application_controller.rb",
+        "app/controllers/concerns/authentication.rb",
+        "app/controllers/home_controller.rb",
+        "app/controllers/passwords_controller.rb",
+        "app/controllers/profiles_controller.rb",
+        "app/controllers/registrations_controller.rb",
+        "app/controllers/sessions_controller.rb"
+      ]
+    },
+    "Channels": {
+      "lines": {
+        "covered": 0,
+        "missed": 0,
+        "omitted": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": []
+    },
+    "Models": {
+      "lines": {
+        "covered": 74,
+        "missed": 1,
+        "omitted": 81,
+        "total": 75,
+        "percent": 98.66666666666667,
+        "strength": 14.946666666666667
+      },
+      "branches": {
+        "covered": 13,
+        "missed": 3,
+        "total": 16,
+        "percent": 81.25,
+        "strength": 17.875
+      },
+      "files": [
+        "app/models/application_record.rb",
+        "app/models/current.rb",
+        "app/models/session.rb",
+        "app/models/user.rb",
+        "app/models/user_import.rb"
+      ]
+    },
+    "Mailers": {
+      "lines": {
+        "covered": 5,
+        "missed": 2,
+        "omitted": 3,
+        "total": 7,
+        "percent": 71.42857142857143,
+        "strength": 0.7142857142857143
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": [
+        "app/mailers/application_mailer.rb",
+        "app/mailers/passwords_mailer.rb"
+      ]
+    },
+    "Helpers": {
+      "lines": {
+        "covered": 1,
+        "missed": 0,
+        "omitted": 1,
+        "total": 1,
+        "percent": 100.0,
+        "strength": 8.0
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": [
+        "app/helpers/application_helper.rb"
+      ]
+    },
+    "Views": {
+      "lines": {
+        "covered": 0,
+        "missed": 0,
+        "omitted": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": []
+    },
+    "Jobs": {
+      "lines": {
+        "covered": 8,
+        "missed": 0,
+        "omitted": 9,
+        "total": 8,
+        "percent": 100.0,
+        "strength": 3.375
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": [
+        "app/jobs/application_job.rb",
+        "app/jobs/user_import_job.rb"
+      ]
+    },
+    "Libraries": {
+      "lines": {
+        "covered": 0,
+        "missed": 0,
+        "omitted": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "branches": {
+        "covered": 0,
+        "missed": 0,
+        "total": 0,
+        "percent": 100.0,
+        "strength": 0.0
+      },
+      "files": []
+    },
+    "Services": {
+      "lines": {
+        "covered": 92,
+        "missed": 7,
+        "omitted": 107,
+        "total": 99,
+        "percent": 92.92929292929293,
+        "strength": 7.717171717171717
+      },
+      "branches": {
+        "covered": 13,
+        "missed": 12,
+        "total": 25,
+        "percent": 52.0,
+        "strength": 4.92
+      },
+      "files": [
+        "app/services/user_imports/csv_reader.rb",
+        "app/services/user_imports/processor.rb",
+        "app/services/user_imports/xlsx_reader.rb"
+      ]
+    }
+  },
+  "errors": {},
+  "history": [
+    {
+      "created_at": "2026-09-14T09:15:57Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:18:11Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:23:35Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 96.3,
+        "branch": 73.33
+      },
+      "groups": {
+        "Controllers": {
+          "line": 95.45,
+          "branch": 77.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 94.44,
+          "branch": 100.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:08Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.73,
+        "branch": 72.0
+      },
+      "groups": {
+        "Controllers": {
+          "line": 94.31,
+          "branch": 75.0
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 94.44,
+          "branch": 100.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:12Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:16Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:20Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 96.02,
+        "branch": 72.0
+      },
+      "groups": {
+        "Controllers": {
+          "line": 94.88,
+          "branch": 75.0
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:23Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:24:49Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:26:09Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:26:33Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.45,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 93.75,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 88.88,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:26:56Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.73,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 94.31,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 94.44,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:27:26Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.73,
+        "branch": 70.66
+      },
+      "groups": {
+        "Controllers": {
+          "line": 94.31,
+          "branch": 72.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 94.44,
+          "branch": 50.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 89.47,
+          "branch": 75.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:27:47Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 96.59,
+        "branch": 73.33
+      },
+      "groups": {
+        "Controllers": {
+          "line": 96.02,
+          "branch": 77.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T09:28:50Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 96.59,
+        "branch": 73.33
+      },
+      "groups": {
+        "Controllers": {
+          "line": 96.02,
+          "branch": 77.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.63,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 97.7,
+          "branch": 57.89
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 97.95,
+          "branch": 70.0
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    },
+    {
+      "created_at": "2026-09-14T10:33:35Z",
+      "branch": "fullstack-test/fernando-rodrigues",
+      "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+      "totals": {
+        "line": 95.35,
+        "branch": 70.37
+      },
+      "groups": {
+        "Controllers": {
+          "line": 96.02,
+          "branch": 77.5
+        },
+        "Channels": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Models": {
+          "line": 98.66,
+          "branch": 81.25
+        },
+        "Mailers": {
+          "line": 71.42,
+          "branch": 100.0
+        },
+        "Helpers": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Views": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Jobs": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Libraries": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "Services": {
+          "line": 92.92,
+          "branch": 52.0
+        }
+      },
+      "files": {
+        "app/controllers/admin/base_controller.rb": {
+          "line": 100.0,
+          "branch": 75.0
+        },
+        "app/controllers/admin/dashboard_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/user_imports_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/admin/users_controller.rb": {
+          "line": 97.22,
+          "branch": 83.33
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/concerns/authentication.rb": {
+          "line": 100.0,
+          "branch": 83.33
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0,
+          "branch": 0.0
+        },
+        "app/controllers/passwords_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/controllers/profiles_controller.rb": {
+          "line": 95.0,
+          "branch": 75.0
+        },
+        "app/controllers/registrations_controller.rb": {
+          "line": 93.75,
+          "branch": 100.0
+        },
+        "app/controllers/sessions_controller.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/jobs/user_import_job.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/mailers/passwords_mailer.rb": {
+          "line": 50.0,
+          "branch": 100.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/current.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/session.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/models/user.rb": {
+          "line": 97.67,
+          "branch": 62.5
+        },
+        "app/models/user_import.rb": {
+          "line": 100.0,
+          "branch": 100.0
+        },
+        "app/services/user_imports/csv_reader.rb": {
+          "line": 100.0,
+          "branch": 50.0
+        },
+        "app/services/user_imports/processor.rb": {
+          "line": 90.16,
+          "branch": 56.25
+        },
+        "app/services/user_imports/xlsx_reader.rb": {
+          "line": 95.45,
+          "branch": 42.85
+        }
+      }
+    }
+  ]
+}

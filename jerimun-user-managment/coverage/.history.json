@@ -1,0 +1,2327 @@
+{
+  "simplecov_history": {
+    "format_version": 1,
+    "entries": [
+      {
+        "created_at": "2026-09-14T09:15:57Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:18:11Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:23:35Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 96.3,
+          "branch": 73.33
+        },
+        "groups": {
+          "Controllers": {
+            "line": 95.45,
+            "branch": 77.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 94.44,
+            "branch": 100.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:08Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.73,
+          "branch": 72.0
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.31,
+            "branch": 75.0
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 94.44,
+            "branch": 100.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:12Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:16Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:20Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 96.02,
+          "branch": 72.0
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.88,
+            "branch": 75.0
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:23Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:24:49Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:26:09Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:26:33Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.45,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 93.75,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 88.88,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:26:56Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.73,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.31,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 94.44,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:27:26Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.73,
+          "branch": 70.66
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.31,
+            "branch": 72.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 94.44,
+            "branch": 50.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 89.47,
+            "branch": 75.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:27:47Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 96.59,
+          "branch": 73.33
+        },
+        "groups": {
+          "Controllers": {
+            "line": 96.02,
+            "branch": 77.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T09:28:50Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 96.59,
+          "branch": 73.33
+        },
+        "groups": {
+          "Controllers": {
+            "line": 96.02,
+            "branch": 77.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.63,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 97.7,
+            "branch": 57.89
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 97.95,
+            "branch": 70.0
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      },
+      {
+        "created_at": "2026-09-14T10:33:35Z",
+        "branch": "fullstack-test/fernando-rodrigues",
+        "commit": "b6555eb749866b6821b9566040546c54f7bcbd4a",
+        "totals": {
+          "line": 95.35,
+          "branch": 70.37
+        },
+        "groups": {
+          "Controllers": {
+            "line": 96.02,
+            "branch": 77.5
+          },
+          "Channels": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Models": {
+            "line": 98.66,
+            "branch": 81.25
+          },
+          "Mailers": {
+            "line": 71.42,
+            "branch": 100.0
+          },
+          "Helpers": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Views": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Jobs": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Libraries": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "Services": {
+            "line": 92.92,
+            "branch": 52.0
+          }
+        },
+        "files": {
+          "app/controllers/admin/base_controller.rb": {
+            "line": 100.0,
+            "branch": 75.0
+          },
+          "app/controllers/admin/dashboard_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/user_imports_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/admin/users_controller.rb": {
+            "line": 97.22,
+            "branch": 83.33
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/concerns/authentication.rb": {
+            "line": 100.0,
+            "branch": 83.33
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 0.0,
+            "branch": 0.0
+          },
+          "app/controllers/passwords_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/controllers/profiles_controller.rb": {
+            "line": 95.0,
+            "branch": 75.0
+          },
+          "app/controllers/registrations_controller.rb": {
+            "line": 93.75,
+            "branch": 100.0
+          },
+          "app/controllers/sessions_controller.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/jobs/user_import_job.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/mailers/passwords_mailer.rb": {
+            "line": 50.0,
+            "branch": 100.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/current.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/session.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 97.67,
+            "branch": 62.5
+          },
+          "app/models/user_import.rb": {
+            "line": 100.0,
+            "branch": 100.0
+          },
+          "app/services/user_imports/csv_reader.rb": {
+            "line": 100.0,
+            "branch": 50.0
+          },
+          "app/services/user_imports/processor.rb": {
+            "line": 90.16,
+            "branch": 56.25
+          },
+          "app/services/user_imports/xlsx_reader.rb": {
+            "line": 95.45,
+            "branch": 42.85
+          }
+        }
+      }
+    ]
+  }
+}

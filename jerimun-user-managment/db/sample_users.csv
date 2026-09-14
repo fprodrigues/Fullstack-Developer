@@ -1,0 +1,5 @@
+full_name,email_address,password,role
+Import One,import.one@example.com,password123,user
+Import Two,import.two@example.com,password123,user
+,broken-email,password123,user
+Import Three,import.three@example.com,password123,admin

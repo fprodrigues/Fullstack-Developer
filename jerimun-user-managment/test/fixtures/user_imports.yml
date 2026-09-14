@@ -1,0 +1,17 @@
+one:
+  status: MyString
+  total_rows: 1
+  processed_rows: 1
+  successful_rows: 1
+  failed_rows: 1
+  error_message: MyText
+  created_by: admin
+
+two:
+  status: MyString
+  total_rows: 1
+  processed_rows: 1
+  successful_rows: 1
+  failed_rows: 1
+  error_message: MyText
+  created_by: member

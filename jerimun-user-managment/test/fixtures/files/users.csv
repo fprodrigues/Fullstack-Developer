@@ -1,0 +1,4 @@
+full_name,email_address,password,role
+Valid One,valid.one@example.com,password123,user
+,not-an-email,password123,user
+Valid Two,VALID.TWO@example.com,password123,admin
