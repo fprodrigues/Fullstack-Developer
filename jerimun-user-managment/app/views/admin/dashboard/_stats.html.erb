@@ -1,0 +1,14 @@
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <p class="text-sm font-medium text-slate-500">Total users</p>
+    <p id="stat_total" class="mt-2 text-3xl font-semibold tabular-nums"><%= stats[:total] %></p>
+  </div>
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <p class="text-sm font-medium text-slate-500">Admins</p>
+    <p id="stat_admins" class="mt-2 text-3xl font-semibold tabular-nums"><%= stats[:admins] %></p>
+  </div>
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <p class="text-sm font-medium text-slate-500">Regular users</p>
+    <p id="stat_users" class="mt-2 text-3xl font-semibold tabular-nums"><%= stats[:users] %></p>
+  </div>
+</div>

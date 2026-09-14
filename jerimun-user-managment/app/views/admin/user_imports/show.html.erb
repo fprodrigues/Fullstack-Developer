@@ -1,0 +1,15 @@
+<% content_for :title, "Import" %>
+
+<%= turbo_stream_from @user_import %>
+
+<div class="mx-auto max-w-2xl">
+  <%= link_to(
+    "&larr; All imports".html_safe,
+    admin_user_imports_path,
+    class: "text-sm text-slate-600 hover:text-slate-900"
+  ) %>
+
+  <div class="mt-4">
+    <%= render "progress", user_import: @user_import %>
+  </div>
+</div>

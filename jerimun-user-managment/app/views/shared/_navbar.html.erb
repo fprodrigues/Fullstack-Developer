@@ -1,0 +1,43 @@
+<nav class="border-b border-slate-200 bg-white">
+  <div
+    class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6
+lg:px-8"
+  >
+    <div class="flex items-center gap-6">
+      <span class="text-sm font-semibold tracking-tight">User Management</span>
+      <div class="hidden items-center gap-4 text-sm sm:flex">
+        <% if current_user.admin? %>
+          <%= link_to(
+            "Dashboard",
+            admin_root_path,
+            class: "text-slate-600 hover:text-slate-900"
+          ) %>
+          <%= link_to(
+            "Users",
+            admin_users_path,
+            class: "text-slate-600 hover:text-slate-900"
+          ) %>
+          <%= link_to(
+            "Imports",
+            admin_user_imports_path,
+            class: "text-slate-600 hover:text-slate-900"
+          ) %>
+        <% end %>
+        <%= link_to(
+          "Profile",
+          profile_path,
+          class: "text-slate-600 hover:text-slate-900"
+        ) %>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="hidden text-sm text-slate-500 sm:inline"><%= current_user.email_address %></span>
+      <%= button_to(
+        "Sign out",
+        session_path,
+        method: :delete,
+        class: "rounded-lg border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bgslate-100"
+      ) %>
+    </div>
+  </div>
+</nav>

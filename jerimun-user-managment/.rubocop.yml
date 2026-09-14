@@ -12,3 +12,11 @@ Layout/IndentationConsistency:
 Layout/IndentationStyle:
   Enabled: true
   EnforcedStyle: spaces
+
+AllCops:
+Exclude:
+  - "bin/**/*"
+  - "db/schema.rb"
+  - "db/*_schema.rb"
+  - "node_modules/**/*"
+  - "vendor/**/*"

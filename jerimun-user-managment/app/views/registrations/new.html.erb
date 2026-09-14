@@ -1,0 +1,89 @@
+<% content_for :title, "Create account" %>
+<div
+  class="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+>
+  <h1 class="text-xl font-semibold tracking-tight">Create your account</h1>
+  <%= form_with(
+    model: @user,
+    url: registration_path,
+    class: "mt-6 space-y-4",
+    data: { controller: "avatar-preview" }
+  ) do |form| %>
+    <% if @user.errors.any? %>
+      <div
+        class="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+      >
+        <ul class="list-inside list-disc">
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div>
+      <%= form.label :full_name, class: "block text-sm font-medium" %>
+      <%= form.text_field(
+        :full_name,
+        required: true,
+        autofocus: true,
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+    <div>
+      <%= form.label :email_address, class: "block text-sm font-medium" %>
+      <%= form.email_field(
+        :email_address,
+        required: true,
+        autocomplete: "username",
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+    <div>
+      <%= form.label :password, class: "block text-sm font-medium" %>
+      <%= form.password_field(
+        :password,
+        required: true,
+        autocomplete: "new-password",
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+    <div>
+      <%= form.label(
+        :password_confirmation,
+        class: "block text-sm font-medium"
+      ) %>
+      <%= form.password_field(
+        :password_confirmation,
+        required: true,
+        autocomplete: "new-password",
+        class: "mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"
+      ) %>
+    </div>
+    <div>
+      <%= form.label(
+        :avatar_image,
+        "Avatar (optional)",
+        class: "block text-sm font-medium"
+      ) %>
+      <div class="mt-1 flex items-center gap-3">
+        <img
+          data-avatar-preview-target="image"
+          class="hidden h-14 w-14 rounded-full object-cover ring-1 ring-slate-200"
+        >
+        <%= form.file_field(
+          :avatar_image,
+          accept: "image/png,image/jpeg,image/webp,image/gif",
+          data: {
+            avatar_preview_target: "input",
+            action: "change->avatar-preview#preview"
+          },
+          class: "text-sm"
+        ) %>
+      </div>
+    </div>
+    <%= form.submit(
+      "Create account",
+      class: "w-full rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bgslate-800"
+    ) %>
+  <% end %>
+</div>
